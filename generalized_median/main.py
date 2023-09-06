@@ -1,5 +1,3 @@
-from itertools import product
-
 import numpy as np
 from scipy.stats import rankdata
 
@@ -41,15 +39,15 @@ def kendal(ranking_pair):
     """
     data = np.array(ranking_pair)
     n, ranklength = data.shape
-    #convert all rankings to orderings
+    # convert all rankings to orderings
     orderings = to_ordering(data)
-    pairs = np.apply_along_axis(lambda a: np.sign(np.array([1, -1]) @ a[np.array(np.triu_indices(ranklength, 1))]), 1, orderings)
-    kendal_correlation = (1 - np.abs(np.array([1, -1]) @ pairs)).mean()
+    pair_indices = np.array(np.triu_indices(ranklength, 1))
+    pairs = np.apply_along_axis(lambda a: np.sign(np.array([-1, 1]) @ a[pair_indices]), 1, orderings)
+    kendal_correlation = (pairs.sum(0) - 1).mean()
     return kendal_correlation
 
 
-
 if __name__ == '__main__':
-    rankings = [[1,2,3], [3,2,1]]
+    rankings = [[1, 2, 3, 4], [1, 2, 4, 3] , [1,4,2,3]]
     mean = kendal(rankings)
     print(mean)
