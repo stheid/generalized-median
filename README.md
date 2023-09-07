@@ -10,6 +10,6 @@ from scipy.stats import rankdata
 
 # this eliminates ties
 rankings = rankdata([[2,2,1,4,5],
-                     [1,3,3,5,1]], method="ordinal")
+                     [1,3,3,5,1]], axis=1, method="ordinal")
 print(generalized_rank_median_spearman(rankings))
 ```
