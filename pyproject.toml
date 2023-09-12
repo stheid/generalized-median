@@ -9,7 +9,6 @@ readme = "README.md"
 python = ">=3.11,<3.13"
 jupyter = "^1.0.0"
 ipykernel = "^6.25.2"
-scikit-psl = "^0.3.0"
 weighted-rank-correlation = {git = "https://github.com/KIuML/weighted_rank_correlation.git"}
 scipy = "^1.11.2"
 scikit-learn = "^1.3.0"
